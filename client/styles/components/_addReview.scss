@@ -1,0 +1,49 @@
+.add-review {
+  flex: $flex-coontainer-width;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 1rem;
+    width: 50%;
+    gap: 0.5rem;
+  }
+  &__input {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 0px solid transparent;
+  }
+  &__input:focus {
+    outline: solid 1px #3d5a80;
+  }
+  &__label {
+    font-weight: bold;
+    margin: 0.25rem 0 0.4rem 0.2rem;
+    color: white;
+  }
+  &__textarea {
+    border: none;
+    border-radius: 0.15rem;
+    min-width: 100%;
+    padding: 5rem;
+  }
+  &__textarea:focus {
+    outline: solid 1px #3d5a80;
+  }
+  &__button {
+    width: 250px;
+    margin: 1rem auto;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.15rem;
+    cursor: pointer;
+    background-color: $buttons-color;
+    font-weight: bold;
+    color: white;
+  }
+  &__error-msg {
+    color: rgb(202, 97, 97);
+    text-align: center;
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,9 @@
+@import "./base/base.scss";
+@import "./settings.scss";
+
+// Components
+@import "./components/reviews-grid";
+@import "./components/sidebar";
+@import "./components/auth";
+@import "./components/addReview";
+@import "./components/singleReview";
