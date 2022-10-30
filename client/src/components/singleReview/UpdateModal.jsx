@@ -4,7 +4,7 @@ import { BsXLg } from 'react-icons/bs'
 const UpdateModal = ({ book, setUpdateModal }) => {
   const onUpdateReview = (e) => {
     e.preventDefault()
-    fetch('http://localhost:3003/reviews', {
+    fetch('https://api.alejandrocoder.com/reviews', {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',

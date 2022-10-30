@@ -28,8 +28,10 @@ const Menu = () => {
         {user && (
           <>
             <div className='menu__logged-user'>{user.username || ''}</div>
-            <span>Log out</span>
-            <button className='menu__logout-button' onClick={() => dispatch(logout())}><BiLogOut className='menu__logout-icon' /> </button>
+            <button className='menu__logout-button' onClick={() => dispatch(logout())}>
+              <span>Log out</span>
+              <BiLogOut className='menu__logout-icon' />
+            </button>
           </>
         )}
       </div>

@@ -11,8 +11,8 @@ app.use(cors())
 app.use(express.json())
 
 // Connect to server
-app.listen(3003, () => {
-  console.log('Listening on port 3003')
+app.listen(3005, () => {
+  console.log('Listening on port 3005')
 })
 
 // Routes

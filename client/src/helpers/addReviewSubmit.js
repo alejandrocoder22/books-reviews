@@ -1,6 +1,6 @@
-export const handleSubmit = ({ ...values }, setErrorMsg, e) => {
-  e.preventDefault()
 
+export const onSubmitReview = ({ ...values }, setErrorMsg, navigate, e) => {
+  e.preventDefault()
   if (values.date.length < 1 || values.stars.length < 1 || values.title.length < 1 || values.pages.length < 1 || values.author.length < 1 || values.summary.length < 1) {
     return setErrorMsg('All fields are required')
   }
@@ -11,12 +11,17 @@ export const handleSubmit = ({ ...values }, setErrorMsg, e) => {
 
   const token = JSON.parse(localStorage.getItem('user'))
 
-  fetch('http://localhost:3003/reviews', {
+  fetch('https://api.alejandrocoder.com/reviews', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       'x-token': token.accessToken
     },
     body: JSON.stringify(values)
-  })
+  }).then(response => response.json())
+    .then(reviewAdded => {
+      if (reviewAdded.status === 'SUCESS') {
+        navigate('/')
+      }
+    })
 }

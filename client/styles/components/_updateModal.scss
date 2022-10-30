@@ -33,6 +33,7 @@
     padding: 1rem 0.25rem;
     color: white;
     font-weight: bold;
+    margin-top: 0.75rem;
     cursor: pointer;
   }
   &__quit-icon {
@@ -47,5 +48,9 @@
 @media (max-width: 33rem) {
   .update-modal {
     width: 98%;
+    top: 0;
+    right: 0;
+    transform: none;
+    padding: 1rem;
   }
 }

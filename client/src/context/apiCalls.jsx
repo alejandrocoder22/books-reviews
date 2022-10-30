@@ -5,7 +5,7 @@ export const handleLogin = async (user, dispatch, setErrorMsg, e) => {
 
   dispatch(LoginStart)
 
-  const response = await fetch('http://localhost:3003/auth/login', {
+  const response = await fetch('https://api.alejandrocoder.com/auth/login', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'

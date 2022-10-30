@@ -7,7 +7,7 @@ const ReviewsGridScreen = () => {
   const [filteredReviews, setFilteredReviews] = useState(reviews)
 
   useEffect(() => {
-    fetch('http://localhost:3003/reviews', {
+    fetch('https://api.alejandrocoder.com/reviews', {
       method: 'GET',
       headers: {
         'x-token': JSON.parse(localStorage.getItem('user'))?.accessToken
@@ -24,10 +24,11 @@ const ReviewsGridScreen = () => {
 
   return (
     <>
-      <div className='filter-and-search-container'>
-        <Search onFilteredReviews={onFilteredReviews} />
-      </div>
+      <div className='filter-and-search-container' />
       <section className='review-container'>
+        {
+          filteredReviews.length > 0 && <Search onFilteredReviews={onFilteredReviews} />
+        }
         {
         reviews?.length < 1 && <div className='addFirstReview'>Add your first Review...</div>
         }

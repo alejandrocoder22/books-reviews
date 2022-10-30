@@ -21,7 +21,7 @@ const ReviewScreen = () => {
   const { title, date, pages, author, stars, summary } = book
 
   const deleteReview = () => {
-    fetch(`http://localhost:3003/reviews/${id}`, {
+    fetch(`https://api.alejandrocoder.com/reviews/${id}`, {
       method: 'DELETE'
     })
   }
