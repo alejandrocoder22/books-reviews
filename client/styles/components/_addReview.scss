@@ -11,7 +11,7 @@
   &__input {
     padding: 0.5rem;
     border-radius: 5px;
-    border: 0px solid transparent;
+    border: 1px solid #3d5a80;
   }
   &__input:focus {
     outline: solid 1px #3d5a80;
@@ -19,25 +19,26 @@
   &__label {
     font-weight: bold;
     margin: 0.25rem 0 0.4rem 0.2rem;
-    color: white;
   }
   &__textarea {
     border: none;
     border-radius: 0.15rem;
     min-width: 100%;
     padding: 5rem;
+    border: 01px solid #3d5a80;
+    border-radius: 5px;
   }
   &__textarea:focus {
     outline: solid 1px #3d5a80;
   }
   &__button {
     width: 250px;
-    margin: 1rem auto;
+    margin: 1rem 0;
     padding: 1rem;
     border: none;
-    border-radius: 0.15rem;
+    border-radius: 5px;
     cursor: pointer;
-    background-color: $buttons-color;
+    background-color: $cta-color;
     font-weight: bold;
     color: white;
   }
@@ -45,5 +46,13 @@
     color: rgb(202, 97, 97);
     text-align: center;
     font-weight: bold;
+  }
+}
+
+@media (max-width: 33rem) {
+  .add-review {
+    &__form {
+      width: 100%;
+    }
   }
 }

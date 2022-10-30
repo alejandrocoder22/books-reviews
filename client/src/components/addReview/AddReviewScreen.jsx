@@ -28,7 +28,7 @@ const AddReviewScreen = () => {
           handleInputChange={handleInputChange}
           name='stars'
           type='number'
-          labelText='Stars'
+          labelText='Stars (1-5)'
         />
         <InputAddReview
           handleInputChange={handleInputChange}

@@ -7,4 +7,17 @@
 
 .svg {
   display: block;
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  max-width: 1720px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (max-width: 33rem) {
+  .wrapper {
+    padding: 0.5rem;
+  }
 }

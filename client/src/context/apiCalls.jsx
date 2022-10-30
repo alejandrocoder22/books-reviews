@@ -18,9 +18,7 @@ export const handleLogin = async (user, dispatch, setErrorMsg, e) => {
   if (data.status === 'FAILED') {
     setErrorMsg(data.message)
     dispatch(LoginFailure(data))
-  }
-
-  if (data.auth === true) {
+  } else {
     dispatch(LoginSuccess(data))
   }
 }

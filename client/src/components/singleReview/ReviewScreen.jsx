@@ -1,44 +1,54 @@
-import React, { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router'
 import { filterBytitle } from '../../helpers/filterBytitle'
-import { AiFillStar } from 'react-icons/ai'
-import { BsTrash, BsArrowReturnLeft } from 'react-icons/bs'
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 
 import SingleReviewItem from './SingleReviewItem'
+import UpdateModal from './UpdateModal'
+import deletePopup from './DeletePopup'
+import DeletePopup from './DeletePopup'
 
-const ReviewScreen = ({ history }) => {
+const ReviewScreen = () => {
   const { id } = useParams()
   const [book, setBook] = useState([])
-
-  const navigate = useNavigate()
+  const [updateModal, setUpdateModal] = useState(false)
+  const [deletePopup, setDeletePopup] = useState(false)
 
   useEffect(() => {
     filterBytitle(id, setBook)
   }, [id])
 
-  const { title, date, pages, author, summarY, stars } = book
+  const { title, date, pages, author, stars, summary } = book
 
   const deleteReview = () => {
     fetch(`http://localhost:3003/reviews/${id}`, {
       method: 'DELETE'
     })
   }
+
+  const onUpdateModal = () => {
+    setUpdateModal(!updateModal)
+  }
+
   return (
     <main className='review-page'>
+      {updateModal && <UpdateModal book={book} setUpdateModal={setUpdateModal} deleteReview={deleteReview} />}
+      {deletePopup && <DeletePopup title={title} setDeletePopup={setDeletePopup} />}
       <section className='review-page__container'>
         <header className='review-page__header-container'>
-          <BsArrowReturnLeft className='review-page__back-icon' onClick={() => navigate('/')} />
           <h1 className='review-page__h1'>{title}</h1>
-          <div className='review-page__star'>
-            {[...Array(stars)].map(i => <span key={i}><AiFillStar className='star-icon' /></span>)}
-          </div>
-          <BsTrash className='review-page__delete-icon' onClick={() => deleteReview()} />
+          <AiFillDelete className='review-page__delete-icon' onClick={() => setDeletePopup(!deletePopup)} />
+          <AiFillEdit className='review-page__edit-icon' onClick={onUpdateModal} />
         </header>
-        <div className='reivew-page__item-container'>
-          <SingleReviewItem info={date} spanText='Date' />
-          <SingleReviewItem info={pages} spanText='Number Of pages' />
+        <div className='review-page__item-container'>
+          <SingleReviewItem info={stars + '/5'} spanText='Rating' />
+          <SingleReviewItem info={date} spanText='Readed' />
+          <SingleReviewItem info={pages} spanText='Pages' />
           <SingleReviewItem info={author} spanText='Author' />
-          <SingleReviewItem info={summarY} spanText='Summary' />
+          <SingleReviewItem info={null} spanText='Summary' />
+          <div className='review-page__summary-container'>
+            <p>{summary}</p>
+          </div>
         </div>
       </section>
     </main>

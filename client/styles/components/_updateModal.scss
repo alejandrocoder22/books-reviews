@@ -1,0 +1,51 @@
+.update-modal {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background-color: #19c558;
+  padding: 5rem;
+  z-index: 2;
+  border-radius: 10px;
+  width: 50%;
+
+  &__label {
+    font-weight: bold;
+  }
+  &__input {
+    padding: 0.5rem 0.5rem;
+    border: 0px solid transparent;
+  }
+  &__textarea {
+    border: 0px solid transparent;
+    min-height: 10rem;
+    min-width: 100%;
+    max-width: 100%;
+    padding: 0.5rem 0.5rem;
+  }
+  &__button {
+    background-color: $cta-color;
+    border: 0px solid transparent;
+    max-width: 10rem;
+    padding: 1rem 0.25rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  &__quit-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 33rem) {
+  .update-modal {
+    width: 98%;
+  }
+}

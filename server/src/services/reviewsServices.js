@@ -16,8 +16,19 @@ const createReview = (stars, date, title, pages, author, summary, id) => {
       id
     ])
 }
+const updateReview = (book) => pool.query('UPDATE reviews SET stars = $1, date = $2, title = $3, pages = $4, author = $5, summary = $6 WHERE review_id = $7',
+  [
+    book.stars,
+    book.date,
+    book.title,
+    book.pages,
+    book.author,
+    book.summary,
+    book.review_id
+  ])
 module.exports = {
   getAllReviews,
   deleteReview,
-  createReview
+  createReview,
+  updateReview
 }

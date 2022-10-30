@@ -14,7 +14,7 @@
   &__input {
     padding: 1rem;
     border-radius: 5px;
-    border: none;
+    border: 1px solid $buttons-color;
   }
   &__button {
     padding: 1rem 0rem;
@@ -24,7 +24,7 @@
     border-radius: 5px;
     cursor: pointer;
     color: white;
-    background-color: $buttons-color;
+    background-color: $cta-color;
   }
   &__label {
     font-weight: bold;

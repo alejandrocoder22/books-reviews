@@ -37,8 +37,19 @@ const postReview = async (req, res) => {
   }
 }
 
+const updateReview = async (req, res) => {
+  const book = req.body
+  try {
+    reviewsServices.updateReview(book)
+    res.status(200).send({ status: 'SUCESS', message: 'Review Updated' })
+  } catch (error) {
+    res.status(400).send({ status: 'FAIL', error: error })
+  }
+}
+
 module.exports = {
   getAllReviews,
   deleteReview,
-  postReview
+  postReview,
+  updateReview
 }
