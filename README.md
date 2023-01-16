@@ -63,8 +63,6 @@ JWT_KEY / Jsonwebtoken password
 JWT_KEY_REFRESH / Jsonwebtoken refresh password
 PG_USER / Postgres User
 PG_PASSWORD / Postgres Password
-
-
 ```
 
 Run client and server
