@@ -27,17 +27,14 @@ const AddReviewScreen = () => {
           type='date'
           labelText='Date'
         />
-        <InputAddReview
-          handleInputChange={handleInputChange}
-          name='stars'
-          type='number'
-          labelText='Stars (1-5)'
-        />
+        <label className='add-review__label'>Stars (1-5)</label>
+        <input onChange={handleInputChange} required autoComplete='off' className='add-review__input' name='stars' type='number' max='5' min='0' />
         <InputAddReview
           handleInputChange={handleInputChange}
           name='title'
           labelText='Title'
         />
+
         <InputAddReview
           handleInputChange={handleInputChange}
           name='pages'
