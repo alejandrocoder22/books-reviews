@@ -7,11 +7,9 @@ import LoginScreen from '../components/auth/LoginScreen'
 import RegisterScreen from '../components/auth/RegisterScreen'
 import { AuthContext } from '../context/AuthContext'
 import Menu from '../components/menu/Menu'
-import { API_URL } from '../../config'
 console.log(import.meta.env)
 const AppRouter = () => {
   const { user } = useContext(AuthContext)
-  console.log(API_URL)
   return (
 
     <BrowserRouter>
