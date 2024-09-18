@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
+import { API_URL } from '../../../config'
 
 const RegisterScreen = () => {
   const navigate = useNavigate()
@@ -14,7 +15,7 @@ const RegisterScreen = () => {
 
   const handleRegister = (e) => {
     e.preventDefault()
-    fetch('https://api.alejandrocoder.com/auth/register', {
+    fetch(`${API_URL}/auth/register`, {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'

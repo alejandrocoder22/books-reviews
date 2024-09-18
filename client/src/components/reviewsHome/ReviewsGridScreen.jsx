@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import Review from './Review'
 import Search from './Search'
+import { API_URL } from '../../../config'
 
 const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
   const [filteredReviews, setFilteredReviews] = useState(reviews)
 
   useEffect(() => {
-    fetch('https://api.alejandrocoder.com/reviews', {
+    fetch(`${API_URL}/reviews`, {
       method: 'GET',
       headers: {
         'x-token': JSON.parse(localStorage.getItem('user'))?.accessToken

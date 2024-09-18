@@ -1,10 +1,11 @@
+import { API_URL } from '../../../config'
 import useForm from '../../hooks/useForm'
 import { BsXLg } from 'react-icons/bs'
 
 const UpdateModal = ({ book, setUpdateModal }) => {
   const onUpdateReview = (e) => {
     e.preventDefault()
-    fetch('https://api.alejandrocoder.com/reviews', {
+    fetch(`${API_URL}/reviews`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',

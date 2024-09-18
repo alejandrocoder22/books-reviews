@@ -1,6 +1,7 @@
+import { API_URL } from '../../config'
 
 export const filterBytitle = (id, setBook) => {
-  return fetch('https://api.alejandrocoder.com/reviews', {
+  return fetch(`${API_URL}/reviews`, {
     method: 'GET',
     headers: {
       'x-token': JSON.parse(localStorage.getItem('user')).accessToken

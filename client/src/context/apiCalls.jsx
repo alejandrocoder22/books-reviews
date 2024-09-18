@@ -1,3 +1,4 @@
+import { API_URL } from '../../config'
 import { LoginFailure, LoginStart, LoginSuccess } from './AuthActions'
 
 export const handleLogin = async (user, dispatch, setErrorMsg, e) => {
@@ -5,7 +6,7 @@ export const handleLogin = async (user, dispatch, setErrorMsg, e) => {
 
   dispatch(LoginStart)
 
-  const response = await fetch('https://api.alejandrocoder.com/auth/login', {
+  const response = await fetch(`${API_URL}/auth/login`, {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'

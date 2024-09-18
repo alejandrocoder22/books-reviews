@@ -7,6 +7,7 @@ import SingleReviewItem from './SingleReviewItem'
 import UpdateModal from './UpdateModal'
 import deletePopup from './DeletePopup'
 import DeletePopup from './DeletePopup'
+import { API_URL } from '../../../config'
 
 const ReviewScreen = () => {
   const { id } = useParams()
@@ -21,7 +22,7 @@ const ReviewScreen = () => {
   const { title, date, pages, author, stars, summary } = book
 
   const deleteReview = () => {
-    fetch(`https://api.alejandrocoder.com/reviews/${id}`, {
+    fetch(`${API_URL}/reviews/${id}`, {
       method: 'DELETE'
     })
   }

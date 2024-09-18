@@ -1,3 +1,4 @@
+import { API_URL } from '../../config'
 
 export const onSubmitReview = ({ ...values }, setErrorMsg, navigate, e) => {
   e.preventDefault()
@@ -11,7 +12,7 @@ export const onSubmitReview = ({ ...values }, setErrorMsg, navigate, e) => {
 
   const token = JSON.parse(localStorage.getItem('user'))
 
-  fetch('https://api.alejandrocoder.com/reviews', {
+  fetch(`${API_URL}/reviews`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
