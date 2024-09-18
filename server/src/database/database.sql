@@ -6,7 +6,7 @@ CREATE TABLE users (
     password VARCHAR (300),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-)
+);
 
 CREATE TABLE reviews (
     review_id SMALLSERIAL UNIQUE PRIMARY KEY,
@@ -19,4 +19,4 @@ CREATE TABLE reviews (
     user_id SMALLINT REFERENCES users(user_id),
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-)
+);
