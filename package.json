@@ -1,0 +1,12 @@
+{
+  "name": "books-reviews",
+  "version": "1.0.0",
+  "description": "Application to summarise your opinion on a book.",
+  "main": "index.js",
+  "scripts": {
+   "dev": "pnpm --filter '**' dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
