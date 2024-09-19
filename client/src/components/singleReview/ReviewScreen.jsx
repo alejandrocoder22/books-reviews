@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useParams } from 'react-router-dom'
 import { filterBytitle } from '../../helpers/filterBytitle'
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
 
 import SingleReviewItem from './SingleReviewItem'
 import UpdateModal from './UpdateModal'
-import deletePopup from './DeletePopup'
 import DeletePopup from './DeletePopup'
 import { API_URL } from '../../../config'
 
