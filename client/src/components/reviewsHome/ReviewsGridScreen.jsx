@@ -27,7 +27,7 @@ const ReviewsGridScreen = () => {
       return Math.ceil(reviews?.length / desiredReviewsPerPage)
     }
 
-    return 0
+    return reviews.length > 0 ? 1 : 0;
   }
   const numberOfPages =  getNumberOfPages()
 
@@ -88,7 +88,7 @@ const ReviewsGridScreen = () => {
       <div className="pagination-container">
   {
     numberOfPages >= 0 && new Array(numberOfPages).fill(null).map((p, i) => {
-      return <button onClick={(e) => setPage(i)} className="pagination-container__item">{i + 1}</button>
+      return <button onClick={(e) => setPage(i)} className={`pagination-container__item ${page === i && 'active'}`}>{i + 1}</button>
     })
   }
 </div>

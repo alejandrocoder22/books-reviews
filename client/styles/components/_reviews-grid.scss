@@ -70,6 +70,10 @@ body {
     border-radius: 5px;
   }
 }
+
+.active {
+  background-color: darkblue;
+}
 @media (max-width: 62.5rem) {
   .review-container {
     grid-template-columns: repeat(2, 1fr);
