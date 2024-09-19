@@ -7,6 +7,7 @@ import LoginScreen from '../components/auth/LoginScreen'
 import RegisterScreen from '../components/auth/RegisterScreen'
 import { AuthContext } from '../context/AuthContext'
 import Menu from '../components/menu/Menu'
+import { Toaster } from 'sonner'
 
 const AppRouter = () => {
   const { user } = useContext(AuthContext)
@@ -25,7 +26,7 @@ const AppRouter = () => {
           </Routes>
         </div>
       </main>
-
+      <Toaster />
     </BrowserRouter>
 
   )

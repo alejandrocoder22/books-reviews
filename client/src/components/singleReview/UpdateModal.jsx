@@ -1,11 +1,12 @@
 import { API_URL } from '../../../config'
 import useForm from '../../hooks/useForm'
 import { BsXLg } from 'react-icons/bs'
+import { toast } from 'sonner'
 
 const UpdateModal = ({ book, setUpdateModal }) => {
-  const onUpdateReview = (e) => {
+  const onUpdateReview = async (e) => {
     e.preventDefault()
-    fetch(`${API_URL}/reviews`, {
+    const response = await fetch(`${API_URL}/reviews`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json',
@@ -13,6 +14,12 @@ const UpdateModal = ({ book, setUpdateModal }) => {
       },
       body: JSON.stringify(values)
     })
+
+    if (response.status === 400) {
+      const parsedBody = await response.json()
+      toast(parsedBody.message)
+    }
+
     setUpdateModal(false)
   }
 
