@@ -7,7 +7,6 @@ import useSeo from '../../hooks/useSeo'
 const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
   const [filteredReviews, setFilteredReviews] = useState(null)
-  const [currentPageReviews, setCurrentPageReviews] = useState([])
   const [page, setPage]= useState(0)
   const [searchtitle, setSearchTitle] = useState('')
 
@@ -48,15 +47,10 @@ const ReviewsGridScreen = () => {
   }, [])
 
 
-  useEffect(() => {
-    setCurrentPageReviews(
-      searchtitle.length === 0 
-      ? reviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
-      : filteredReviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
-    )
 
-  }, [reviews, page])
-
+const currentPageReviews =  !filteredReviews
+  ? reviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
+  : filteredReviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
 
 
   useSeo({
