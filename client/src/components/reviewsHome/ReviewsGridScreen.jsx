@@ -8,13 +8,28 @@ const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
   const [filteredReviews, setFilteredReviews] = useState(null)
   const [currentPageReviews, setCurrentPageReviews] = useState([])
-  const [page, setPage]= useState(3)
+  const [page, setPage]= useState(0)
+  const [searchtitle, setSearchTitle] = useState('')
 
-  const desiredReviewsPerPage = 20
-
-  const numberOfPages = filteredReviews ? filteredReviews.length / desiredReviewsPerPage : reviews.length / desiredReviewsPerPage
+  const desiredReviewsPerPage = 16
 
 
+  const getNumberOfPages = () => {
+
+   console.log(filteredReviews);
+    if (filteredReviews?.length > desiredReviewsPerPage) {
+
+      
+      return Math.ceil(filteredReviews?.length / desiredReviewsPerPage)
+    } 
+
+    if (reviews.length > desiredReviewsPerPage && searchtitle.length < 1 ) {
+      return Math.ceil(reviews?.length / desiredReviewsPerPage)
+    }
+
+    return 0
+  }
+  const numberOfPages =  getNumberOfPages()
 
   useEffect(() => {
     fetch(`${API_URL}/reviews`, {
@@ -32,16 +47,17 @@ const ReviewsGridScreen = () => {
       )
   }, [])
 
-  useEffect(() => {
 
- 
-    setCurrentPageReviews(reviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  ))
+  useEffect(() => {
+    setCurrentPageReviews(
+      searchtitle.length === 0 
+      ? reviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
+      : filteredReviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
+    )
 
   }, [reviews, page])
 
-  const onFilteredReviews = (e) => {
-    setFilteredReviews(reviews.filter(data => data.title.toLowerCase().includes(e.target.value.toLowerCase())))
-  }
+
 
   useSeo({
     title: 'Books Reviews'
@@ -52,15 +68,14 @@ const ReviewsGridScreen = () => {
       <div className='filter-and-search-container'>
         {
 
-          reviews.length >= 0 && <Search onFilteredReviews={onFilteredReviews} />
+          reviews.length >= 0 && <Search page={page} desiredReviewsPerPage={desiredReviewsPerPage} getNumberOfPages={getNumberOfPages} reviews={reviews} searchTitle={searchtitle} setFilteredReviews={setFilteredReviews} setSearchTitle={setSearchTitle} />
         }
       </div>
       <section className='review-container'>
-        {
-          filteredReviews
-            ? filteredReviews?.map(review => <Review key={review.review_id} {...review} />)
-            : currentPageReviews?.map(review => <Review key={review.review_id} {...review} />)
-        }
+      {
+             currentPageReviews?.map(review => <Review key={review.review_id} {...review} />)}
+           
+        
 
         {
         reviews?.length < 1 && <div className='addFirstReview'>Add your first Review...</div>
@@ -72,7 +87,7 @@ const ReviewsGridScreen = () => {
       </section>
       <div className="pagination-container">
   {
-    new Array(numberOfPages).fill(null).map((p, i) => {
+    numberOfPages >= 0 && new Array(numberOfPages).fill(null).map((p, i) => {
       return <button onClick={(e) => setPage(i)} className="pagination-container__item">{i + 1}</button>
     })
   }
