@@ -2,6 +2,9 @@ import { API_URL } from '../../../config'
 import useForm from '../../hooks/useForm'
 import { BsXLg } from 'react-icons/bs'
 import { toast } from 'sonner'
+import rehypeSanitize from 'rehype-sanitize'
+import MDEditor from '@uiw/react-md-editor/nohighlight';
+import { useState } from 'react'
 
 const UpdateModal = ({ book, setUpdateModal }) => {
   const onUpdateReview = async (e) => {
@@ -12,7 +15,7 @@ const UpdateModal = ({ book, setUpdateModal }) => {
         'Content-type': 'application/json',
         'x-token': JSON.parse(localStorage.getItem('user')).accessToken
       },
-      body: JSON.stringify(values)
+      body: JSON.stringify({...values, summary})
     })
 
     if (response.status === 400) {
@@ -33,6 +36,9 @@ const UpdateModal = ({ book, setUpdateModal }) => {
     review_id: book.review_id
   })
 
+  const [summary, setSummary] = useState(values.summary)
+
+  const rehypePlugins = [rehypeSanitize];
   return (
     <>
 
@@ -49,7 +55,13 @@ const UpdateModal = ({ book, setUpdateModal }) => {
         <label className='update-modal__label'>Author</label>
         <input onChange={(e) => handleInpuTchange(e)} value={values.author} className='update-modal__input' type='text' name='author' />
         <label className='update-modal__label'>Summary</label>
-        <textarea onChange={(e) => handleInpuTchange(e)} value={values.summary} className='update-modal__textarea' type='text' name='summary' />
+          <MDEditor
+          value={summary}
+          onChange={setSummary}
+          rehypePlugins={rehypePlugins}
+          name='summary'
+        
+      />
         <button type='submit' className='update-modal__button'>Update</button>
       </form>
     </>
