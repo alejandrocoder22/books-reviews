@@ -7,6 +7,14 @@ import useSeo from '../../hooks/useSeo'
 const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
   const [filteredReviews, setFilteredReviews] = useState(null)
+  const [currentPageReviews, setCurrentPageReviews] = useState([])
+  const [page, setPage]= useState(3)
+
+  const desiredReviewsPerPage = 20
+
+  const numberOfPages = filteredReviews ? filteredReviews.length / desiredReviewsPerPage : reviews.length / desiredReviewsPerPage
+
+
 
   useEffect(() => {
     fetch(`${API_URL}/reviews`, {
@@ -16,8 +24,20 @@ const ReviewsGridScreen = () => {
       }
     })
       .then(response => response.json())
-      .then(data => setReviews(data.data))
+      .then(data => {
+
+        setReviews(data.data)
+      }
+      
+      )
   }, [])
+
+  useEffect(() => {
+
+ 
+    setCurrentPageReviews(reviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  ))
+
+  }, [reviews, page])
 
   const onFilteredReviews = (e) => {
     setFilteredReviews(reviews.filter(data => data.title.toLowerCase().includes(e.target.value.toLowerCase())))
@@ -39,14 +59,24 @@ const ReviewsGridScreen = () => {
         {
           filteredReviews
             ? filteredReviews?.map(review => <Review key={review.review_id} {...review} />)
-            : reviews?.map(review => <Review key={review.review_id} {...review} />)
+            : currentPageReviews?.map(review => <Review key={review.review_id} {...review} />)
         }
 
         {
         reviews?.length < 1 && <div className='addFirstReview'>Add your first Review...</div>
-        }
+
+
+}
+
 
       </section>
+      <div className="pagination-container">
+  {
+    new Array(numberOfPages).fill(null).map((p, i) => {
+      return <button onClick={(e) => setPage(i)} className="pagination-container__item">{i + 1}</button>
+    })
+  }
+</div>
     </>
   )
 }
