@@ -3,6 +3,7 @@ import useForm from '../../hooks/useForm'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthContext'
 import { handleLogin } from '../../context/apiCalls'
+import useSeo from '../../hooks/useSeo'
 
 const LoginScreen = () => {
   const [values, handleInputChange] = useForm({
@@ -13,6 +14,10 @@ const LoginScreen = () => {
   const { username, password } = values
   const { isFetching, dispatch } = useContext(AuthContext)
   const [errorMsg, setErrorMsg] = useState('')
+
+  useSeo({
+    title: 'Login'
+  })
 
   return (
     <form onSubmit={(e) => handleLogin({ username, password }, dispatch, setErrorMsg, e)} className='auth-container'>

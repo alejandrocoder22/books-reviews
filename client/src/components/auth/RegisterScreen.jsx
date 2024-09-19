@@ -4,6 +4,7 @@ import useForm from '../../hooks/useForm'
 import { API_URL } from '../../../config'
 import { AuthContext } from '../../context/AuthContext'
 import { LoginFailure, LoginSuccess } from '../../context/AuthActions'
+import useSeo from '../../hooks/useSeo'
 
 const RegisterScreen = () => {
   const navigate = useNavigate()
@@ -14,6 +15,10 @@ const RegisterScreen = () => {
   const [confirmMessage, setConfirmMessage] = useState('')
   const { isFetching, dispatch } = useContext(AuthContext)
   const { username, password } = values
+
+  useSeo({
+    title: 'Register'
+  })
 
   const handleRegister = (e) => {
     e.preventDefault()

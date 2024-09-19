@@ -4,6 +4,7 @@ import InputAddReview from './InputAddReview'
 import { BiErrorAlt } from 'react-icons/bi'
 import { onSubmitReview } from '../../helpers/addReviewSubmit'
 import { useNavigate } from 'react-router-dom'
+import useSeo from '../../hooks/useSeo'
 
 const AddReviewScreen = () => {
   const [errorMsg, setErrorMsg] = useState()
@@ -17,6 +18,10 @@ const AddReviewScreen = () => {
   })
 
   const navigate = useNavigate()
+
+  useSeo({
+    title: 'Add Review'
+  })
 
   return (
     <div className='add-review'>

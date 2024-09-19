@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Review from './Review'
 import Search from './Search'
 import { API_URL } from '../../../config'
+import useSeo from '../../hooks/useSeo'
 
 const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
@@ -22,6 +23,10 @@ const ReviewsGridScreen = () => {
   const onFilteredReviews = (e) => {
     setFilteredReviews(reviews.filter(data => data.title.toLowerCase().includes(e.target.value.toLowerCase())))
   }
+
+  useSeo({
+    title: 'Books Reviews'
+  })
 
   return (
     <>
