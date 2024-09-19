@@ -39,6 +39,9 @@ const postReview = async (req, res) => {
 
 const updateReview = async (req, res) => {
   const book = req.body
+
+  if (book.stars > 5) res.status(400).json({ message: 'You can only pick up to 5 stars!' })
+
   try {
     reviewsServices.updateReview(book)
     res.status(200).send({ status: 'SUCESS', message: 'Review Updated' })
