@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { filterBytitle } from '../../helpers/filterBytitle'
 import { AiFillEdit, AiFillDelete } from 'react-icons/ai'
-
+import Markdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import SingleReviewItem from './SingleReviewItem'
 import UpdateModal from './UpdateModal'
 import DeletePopup from './DeletePopup'
@@ -47,7 +48,7 @@ const ReviewScreen = () => {
           <SingleReviewItem info={author} spanText='Author' />
           <SingleReviewItem info={null} spanText='Summary' />
           <div className='review-page__summary-container'>
-            <p>{summary}</p>
+           <Markdown remarkPlugins={[remarkGfm]}>{summary}</Markdown>
           </div>
         </div>
       </section>

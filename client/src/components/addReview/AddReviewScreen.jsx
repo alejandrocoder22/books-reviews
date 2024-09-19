@@ -4,8 +4,8 @@ import InputAddReview from './InputAddReview'
 import { BiErrorAlt } from 'react-icons/bi'
 import { onSubmitReview } from '../../helpers/addReviewSubmit'
 import { useNavigate } from 'react-router-dom'
+import MDEditor from '@uiw/react-md-editor/nohighlight';
 import useSeo from '../../hooks/useSeo'
-
 const AddReviewScreen = () => {
   const [errorMsg, setErrorMsg] = useState()
   const [values, handleInputChange] = useForm({
@@ -14,9 +14,9 @@ const AddReviewScreen = () => {
     title: '',
     pages: 0,
     author: '',
-    summary: ''
   })
 
+  const [value, setValue] = useState('')
   const navigate = useNavigate()
 
   useSeo({
@@ -25,7 +25,7 @@ const AddReviewScreen = () => {
 
   return (
     <div className='add-review'>
-      <form onSubmit={(e) => onSubmitReview({ ...values }, setErrorMsg, navigate, e)} className='add-review__form'>
+      <form onSubmit={(e) => onSubmitReview({ ...values, summary: value }, setErrorMsg, navigate, e)} className='add-review__form'>
         <InputAddReview
           handleInputChange={handleInputChange}
           name='date'
@@ -50,9 +50,12 @@ const AddReviewScreen = () => {
           name='author'
           labelText='Author'
         />
-        <label className='add-review__label'>Summary</label>
-        <textarea onChange={handleInputChange} className='add-review__textarea' name='summary' />
+        <label className='add-review__label'>Summary</label> <MDEditor
+        value={value}
+        onChange={setValue}
+      />
         <button className='add-review__button'>Add Book</button>
+      
       </form>
       {errorMsg && <div className='add-review__error-msg'>{errorMsg} <BiErrorAlt /></div>}
     </div>
