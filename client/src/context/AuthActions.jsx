@@ -12,7 +12,7 @@ export const LoginFailure = () => ({
   type: 'LOGIN_FAILURE'
 })
 
-export const logout = (navigate) => ({
+export const logout = () => ({
   type: 'LOGIN_LOGOUT'
 
 })
