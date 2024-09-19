@@ -6,7 +6,7 @@ import useSeo from '../../hooks/useSeo'
 
 const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
-  const [filteredReviews, setFilteredReviews] = useState(reviews)
+  const [filteredReviews, setFilteredReviews] = useState(null)
 
   useEffect(() => {
     fetch(`${API_URL}/reviews`, {
@@ -17,7 +17,6 @@ const ReviewsGridScreen = () => {
     })
       .then(response => response.json())
       .then(data => setReviews(data.data))
-    setFilteredReviews(reviews)
   }, [])
 
   const onFilteredReviews = (e) => {
@@ -32,12 +31,15 @@ const ReviewsGridScreen = () => {
     <>
       <div className='filter-and-search-container'>
         {
+
           reviews.length >= 0 && <Search onFilteredReviews={onFilteredReviews} />
         }
       </div>
       <section className='review-container'>
         {
-       filteredReviews?.map(review => <Review key={review.review_id} {...review} />)
+          filteredReviews
+            ? filteredReviews?.map(review => <Review key={review.review_id} {...review} />)
+            : reviews?.map(review => <Review key={review.review_id} {...review} />)
         }
 
         {
