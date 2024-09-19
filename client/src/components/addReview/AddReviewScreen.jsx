@@ -6,6 +6,7 @@ import { onSubmitReview } from '../../helpers/addReviewSubmit'
 import { useNavigate } from 'react-router-dom'
 import MDEditor from '@uiw/react-md-editor/nohighlight';
 import useSeo from '../../hooks/useSeo'
+import rehypeSanitize from 'rehype-sanitize'
 const AddReviewScreen = () => {
   const [errorMsg, setErrorMsg] = useState()
   const [values, handleInputChange] = useForm({
@@ -22,6 +23,8 @@ const AddReviewScreen = () => {
   useSeo({
     title: 'Add Review'
   })
+
+  const rehypePlugins = [rehypeSanitize];
 
   return (
     <div className='add-review'>
@@ -50,9 +53,12 @@ const AddReviewScreen = () => {
           name='author'
           labelText='Author'
         />
-        <label className='add-review__label'>Summary</label> <MDEditor
+        <label className='add-review__label'>Summary</label>
+      <MDEditor
         value={value}
         onChange={setValue}
+        rehypePlugins={rehypePlugins}
+        
       />
         <button className='add-review__button'>Add Book</button>
       
