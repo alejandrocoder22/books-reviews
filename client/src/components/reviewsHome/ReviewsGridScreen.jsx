@@ -30,16 +30,18 @@ const ReviewsGridScreen = () => {
 
   return (
     <>
-      <div className='filter-and-search-container' />
-      <section className='review-container'>
+      <div className='filter-and-search-container'>
         {
           reviews.length >= 0 && <Search onFilteredReviews={onFilteredReviews} />
         }
-        {
-        reviews?.length < 1 && <div className='addFirstReview'>Add your first Review...</div>
-        }
+      </div>
+      <section className='review-container'>
         {
        filteredReviews?.map(review => <Review key={review.review_id} {...review} />)
+        }
+
+        {
+        reviews?.length < 1 && <div className='addFirstReview'>Add your first Review...</div>
         }
 
       </section>

@@ -11,15 +11,17 @@ body {
 .search-container {
   position: relative;
   &__input {
-    padding: 0.5rem;
+    position: relative;
+    padding: 0.5rem 2rem 0.5rem 0.5rem;
     border-radius: 5px;
     border: 1px solid #1b0b37;
   }
   &__icon {
     position: absolute;
+    right: 0;
     top: 50%;
     transform: translate(-50%, -50%);
-    right: 0;
+    z-index: 2;
   }
 }
 .review-container {
