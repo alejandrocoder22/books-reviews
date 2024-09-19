@@ -42,7 +42,7 @@ const createUser = async (req, res) => {
     return res.status(400).send({ status: 'FAIL', message: 'User already exist' })
   } else {
     const payload = {
-      userId: '',
+      id: '',
       username
     }
     const SALT_ROUNDS = 10
@@ -58,7 +58,7 @@ const createUser = async (req, res) => {
 
         const userCreated = await authServices.createUser(username, hashedPassword)
 
-        payload.userId = userCreated.rows[0].user_id
+        payload.id = userCreated.rows[0].user_id
 
         const token = generateAccesToken(payload)
         res.status(201).send({
