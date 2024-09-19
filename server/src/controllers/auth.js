@@ -61,7 +61,12 @@ const createUser = async (req, res) => {
         payload.userId = userCreated.rows[0].user_id
 
         const token = generateAccesToken(payload)
-        res.status(201).send({ status: 'SUCESS', message: 'User ureated', token })
+        res.status(201).send({
+          auth: true,
+          accessToken: token,
+          username,
+          status: 'success'
+        })
       })
     })
   }

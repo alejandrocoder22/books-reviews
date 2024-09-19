@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { API_URL } from '../../../config'
+import { AuthContext } from '../../context/AuthContext'
+import { LoginFailure, LoginSuccess } from '../../context/AuthActions'
 
 const RegisterScreen = () => {
   const navigate = useNavigate()
@@ -10,7 +12,7 @@ const RegisterScreen = () => {
     password: ''
   })
   const [confirmMessage, setConfirmMessage] = useState('')
-
+  const { isFetching, dispatch } = useContext(AuthContext)
   const { username, password } = values
 
   const handleRegister = (e) => {
@@ -23,10 +25,11 @@ const RegisterScreen = () => {
       body: JSON.stringify(values)
     }).then(response => response.json())
       .then(data => {
-        if (data.status === 'SUCESS') {
+        if (data.status === 'success') {
+          dispatch(LoginSuccess(data))
           navigate('/')
         } else {
-          setConfirmMessage('User already exist')
+          dispatch(LoginFailure(data.message))
         }
       })
   }
