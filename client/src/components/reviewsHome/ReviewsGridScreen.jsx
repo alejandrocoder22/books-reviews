@@ -7,28 +7,24 @@ import useSeo from '../../hooks/useSeo'
 const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
   const [filteredReviews, setFilteredReviews] = useState(null)
-  const [page, setPage]= useState(0)
+  const [page, setPage] = useState(0)
   const [searchtitle, setSearchTitle] = useState('')
 
   const desiredReviewsPerPage = 16
 
-
   const getNumberOfPages = () => {
-
-   console.log(filteredReviews);
+    console.log(filteredReviews)
     if (filteredReviews?.length > desiredReviewsPerPage) {
-
-      
       return Math.ceil(filteredReviews?.length / desiredReviewsPerPage)
-    } 
+    }
 
-    if (reviews.length > desiredReviewsPerPage && searchtitle.length < 1 ) {
+    if (reviews.length > desiredReviewsPerPage && searchtitle.length < 1) {
       return Math.ceil(reviews?.length / desiredReviewsPerPage)
     }
 
-    return reviews.length > 0 ? 1 : 0;
+    return reviews.length > 0 ? 1 : 0
   }
-  const numberOfPages =  getNumberOfPages()
+  const numberOfPages = getNumberOfPages()
 
   useEffect(() => {
     fetch(`${API_URL}/reviews`, {
@@ -39,19 +35,15 @@ const ReviewsGridScreen = () => {
     })
       .then(response => response.json())
       .then(data => {
-
         setReviews(data.data)
       }
-      
+
       )
   }, [])
 
-
-
-const currentPageReviews =  !filteredReviews
-  ? reviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
-  : filteredReviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage  )
-
+  const currentPageReviews = !filteredReviews
+    ? reviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage)
+    : filteredReviews?.slice(page * desiredReviewsPerPage, page * desiredReviewsPerPage + desiredReviewsPerPage)
 
   useSeo({
     title: 'Books Reviews'
@@ -66,26 +58,23 @@ const currentPageReviews =  !filteredReviews
         }
       </div>
       <section className='review-container'>
-      {
-             currentPageReviews?.map(review => <Review key={review.review_id} {...review} />)}
-           
-        
+        {
+             currentPageReviews?.map(review => <Review key={review.review_id} {...review} />)
+}
 
         {
         reviews?.length < 1 && <div className='addFirstReview'>Add your first Review...</div>
 
-
 }
 
-
       </section>
-      <div className="pagination-container">
-  {
+      <div className='pagination-container'>
+        {
     numberOfPages >= 0 && new Array(numberOfPages).fill(null).map((p, i) => {
       return <button onClick={(e) => setPage(i)} className={`pagination-container__item ${page === i && 'active'}`}>{i + 1}</button>
     })
   }
-</div>
+      </div>
     </>
   )
 }
