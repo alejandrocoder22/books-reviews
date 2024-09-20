@@ -14,7 +14,6 @@ const ReviewsGridScreen = () => {
   const desiredReviewsPerPage = 16
 
   const getNumberOfPages = () => {
-    console.log(filteredReviews)
     if (filteredReviews?.length > desiredReviewsPerPage) {
       return Math.ceil(filteredReviews?.length / desiredReviewsPerPage)
     }

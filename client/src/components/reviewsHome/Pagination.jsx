@@ -2,7 +2,6 @@ import { LeftPaginateIcon, RightPaginateIcon } from '../icons/Icons'
 import PaginationButton from './PaginationButton'
 
 const Pagination = ({ numberOfPages, setPage, page }) => {
-  console.log(numberOfPages)
   return (
     <div className='pagination-container'>
       {
