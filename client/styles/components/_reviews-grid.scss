@@ -63,16 +63,18 @@ body {
   gap: 1rem;
   justify-content: center;
   margin-top: 1rem;
-  &__item {
-    padding: 1rem;
-    border: 0;
-    background-color: coral;
+  &__item,
+  &__button {
+    padding: 0.5rem;
+    border: 2px solid rgb(50, 50, 50);
+    background-color: transparent;
     border-radius: 5px;
+    cursor: pointer;
   }
 }
 
 .active {
-  background-color: darkblue;
+  background-color: $light-background;
 }
 @media (max-width: 62.5rem) {
   .review-container {

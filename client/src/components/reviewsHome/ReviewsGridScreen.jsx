@@ -3,6 +3,7 @@ import Review from './Review'
 import Search from './Search'
 import { API_URL } from '../../../config'
 import useSeo from '../../hooks/useSeo'
+import Pagination from './Pagination'
 
 const ReviewsGridScreen = () => {
   const [reviews, setReviews] = useState([])
@@ -68,13 +69,7 @@ const ReviewsGridScreen = () => {
 }
 
       </section>
-      <div className='pagination-container'>
-        {
-    numberOfPages >= 0 && new Array(numberOfPages).fill(null).map((p, i) => {
-      return <button onClick={(e) => setPage(i)} className={`pagination-container__item ${page === i && 'active'}`}>{i + 1}</button>
-    })
-  }
-      </div>
+      <Pagination numberOfPages={numberOfPages} setPage={setPage} page={page} />
     </>
   )
 }
