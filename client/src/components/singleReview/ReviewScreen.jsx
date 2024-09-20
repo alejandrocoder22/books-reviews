@@ -48,7 +48,7 @@ const ReviewScreen = () => {
           <SingleReviewItem info={author} spanText='Author' />
           <SingleReviewItem info={null} spanText='Summary' />
           <div className='review-page__summary-container'>
-           <Markdown remarkPlugins={[remarkGfm]}>{summary}</Markdown>
+            <Markdown remarkPlugins={[remarkGfm]}>{summary}</Markdown>
           </div>
         </div>
       </section>
