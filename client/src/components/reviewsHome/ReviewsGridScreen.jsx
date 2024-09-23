@@ -54,7 +54,7 @@ const ReviewsGridScreen = () => {
       <div className='filter-and-search-container'>
         {
 
-          reviews?.length >= 0 && <Search page={page} desiredReviewsPerPage={desiredReviewsPerPage} getNumberOfPages={getNumberOfPages} reviews={reviews} searchTitle={searchtitle} setFilteredReviews={setFilteredReviews} setSearchTitle={setSearchTitle} />
+          reviews?.length >= 0 && <Search setPage={setPage} getNumberOfPages={getNumberOfPages} reviews={reviews} searchTitle={searchtitle} setFilteredReviews={setFilteredReviews} setSearchTitle={setSearchTitle} />
         }
       </div>
       <section className='review-container'>
