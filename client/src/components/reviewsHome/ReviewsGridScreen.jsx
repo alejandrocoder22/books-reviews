@@ -18,11 +18,11 @@ const ReviewsGridScreen = () => {
       return Math.ceil(filteredReviews?.length / desiredReviewsPerPage)
     }
 
-    if (reviews.length > desiredReviewsPerPage && searchtitle.length < 1) {
+    if (reviews?.length > desiredReviewsPerPage && searchtitle.length < 1) {
       return Math.ceil(reviews?.length / desiredReviewsPerPage)
     }
 
-    return reviews.length > 0 ? 1 : 0
+    return reviews?.length > 0 ? 1 : 0
   }
   const numberOfPages = getNumberOfPages()
 
@@ -54,7 +54,7 @@ const ReviewsGridScreen = () => {
       <div className='filter-and-search-container'>
         {
 
-          reviews.length >= 0 && <Search page={page} desiredReviewsPerPage={desiredReviewsPerPage} getNumberOfPages={getNumberOfPages} reviews={reviews} searchTitle={searchtitle} setFilteredReviews={setFilteredReviews} setSearchTitle={setSearchTitle} />
+          reviews?.length >= 0 && <Search page={page} desiredReviewsPerPage={desiredReviewsPerPage} getNumberOfPages={getNumberOfPages} reviews={reviews} searchTitle={searchtitle} setFilteredReviews={setFilteredReviews} setSearchTitle={setSearchTitle} />
         }
       </div>
       <section className='review-container'>
