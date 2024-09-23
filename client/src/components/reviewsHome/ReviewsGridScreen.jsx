@@ -11,7 +11,7 @@ const ReviewsGridScreen = () => {
   const [page, setPage] = useState(0)
   const [searchtitle, setSearchTitle] = useState('')
 
-  const desiredReviewsPerPage = 16
+  const desiredReviewsPerPage = 12
 
   const getNumberOfPages = () => {
     if (filteredReviews?.length > desiredReviewsPerPage) {
