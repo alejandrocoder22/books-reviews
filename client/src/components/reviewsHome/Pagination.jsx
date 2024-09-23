@@ -4,12 +4,12 @@ import PaginationButton from './PaginationButton'
 const Pagination = ({ numberOfPages, setPage, page }) => {
   const decreasePage = () => {
     setPage(page - 1)
-    window.scrollTo(0, 0, {})
+    window.scrollTo(0, 0)
   }
 
   const increasePage = () => {
     setPage(page + 1)
-    window.scrollTo(0, 0, {})
+    window.scrollTo(0, 0)
   }
 
   return (
