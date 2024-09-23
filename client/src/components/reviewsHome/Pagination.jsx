@@ -2,6 +2,16 @@ import { LeftPaginateIcon, RightPaginateIcon } from '../icons/Icons'
 import PaginationButton from './PaginationButton'
 
 const Pagination = ({ numberOfPages, setPage, page }) => {
+  const decreasePage = () => {
+    setPage(page - 1)
+    window.scrollTo(0, 0, {})
+  }
+
+  const increasePage = () => {
+    setPage(page + 1)
+    window.scrollTo(0, 0, {})
+  }
+
   return (
     <div className='pagination-container'>
       {
@@ -9,7 +19,7 @@ const Pagination = ({ numberOfPages, setPage, page }) => {
            <>
              {page !== 0 &&
               (
-                <button className='pagination-container__button' onClick={() => setPage(page + -1)}>
+                <button className='pagination-container__button' onClick={decreasePage}>
                   <LeftPaginateIcon />
                 </button>
               )}
@@ -19,7 +29,7 @@ const Pagination = ({ numberOfPages, setPage, page }) => {
              {
              page !== numberOfPages - 1 &&
              (
-               <button className='pagination-container__button' onClick={() => setPage(page + 1)}>
+               <button className='pagination-container__button' onClick={increasePage}>
                  <RightPaginateIcon />
                </button>
              )
